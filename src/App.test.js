@@ -1,10 +1,20 @@
 import React from "react";
-import { screen, render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import App from "./App";
 
 describe("App component", () => {
-  it("renders correct heading", () => {
+  it("renders Vancouver Canucks are going to make the playoffs", () => {
+    const { container } = render(<App />);
+    expect(container).toMatchSnapshot();
+  });
+
+  it("renders just kidding after button click", () => {
     render(<App />);
-    expect(screen.getByRole("heading").textContent).toMatch(/Hello test app!/i);
+    const button = screen.getByRole("button", { name: "Click Me" });
+
+    userEvent.click(button);
+
+    expect(screen.getByRole("heading").textContent).toMatch(/Just kidding/i);
   });
 });

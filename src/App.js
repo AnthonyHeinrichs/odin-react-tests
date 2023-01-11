@@ -1,10 +1,20 @@
+import React, { useState } from "react";
 
-function App() {
+const App = () => {
+  const [heading, setHeading] = useState("Vancouver Canucks are going to the playoffs");
+
+  const clickHandler = () => {
+    setHeading("Just kidding");
+  };
+
   return (
-    <div className="App">
-      <h1>Hello test app!</h1>
-    </div>
+    <>
+      <button type="button" onClick={clickHandler}>
+        Click Me
+      </button>
+      <h1>{heading}</h1>
+    </>
   );
-}
+};
 
 export default App;
